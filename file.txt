@@ -1,0 +1,4 @@
+Pencil clerical 50 400 pieces
+Pen clerical 90 600 pieces
+Eraser clerical 10 200 pieces
+Bear toys 499 20 pieces
