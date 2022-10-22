@@ -1,5 +1,4 @@
 from Product import Product
-import codecs
 
 def printProduct(arrayProduct):
     print("Данные из файла : ")
@@ -19,15 +18,21 @@ def printMenu():
           "4 - Сортировака по названию магазига\n"
           "5 - Вывод информации о товаре, название которого введено с клавиатуры\n"
           "6 - Запись списка в файл под тем же или новым именем\n"
-          "7 - Вывод информации в файле")
+          "7 - Вывод информации в файле\n"
+          "8 - Выход")
 
 def change(arrayProduct):
     print("Какую запись вы хотите изменить ?")
     printProduct(arrayProduct)
     inputUser = int(input())
     arrayProduct[inputUser].setNameProduct(input("Введите новое имя продукта "))
-    arrayProduct[inputUser].setNameShop(input("Введите новое имя магазина "))
-    arrayProduct[inputUser].setPrice(input("Введите новую цену "))
+    arrayProduct[inputUser].setNameShop((input("Введите новое имя магазина ")).lower())
+    while (True):
+        try:
+            arrayProduct[inputUser].setPrice(input("Введите новую цену "))
+            break
+        except Exception:
+            print("Должно вводиться число !")
     arrayProduct[inputUser].setCount(input("Введите новое количество "))
     arrayProduct[inputUser].setUnits(input("Введите новое измерение "))
     printProduct(arrayProduct)
@@ -55,9 +60,13 @@ def addProduct(b):
     newProduct = Product("", "", 0, 0, "")
     b.append(newProduct)
     b[w].setNameProduct(input("Введите новое имя продукта "))
-    b[w].setNameShop(input("Введите новое имя магазина "))
-    b[w].setPrice(input("Введите новую цену "))
-    b[w].setCount(input("Введите новое количество "))
+    b[w].setNameShop((input("Введите новое имя магазина ")).lower())
+    while(True):
+        try:
+            b[w].setPrice(int(input("Введите новую цену ")))
+            break
+        except Exception: print("Должно вводиться число !")
+    b[w].setCount(int(input("Введите новое количество ")))
     b[w].setUnits(input("Введите новое измерение "))
 
 def saveNewArrayProduct(arrayProduct):
@@ -100,7 +109,9 @@ while (True):
         search(input("Введите имя товара "), arrayProduct)
     elif inputUser == 6:
         saveNewArrayProduct(arrayProduct)
-    elif inputUser ==7:
+    elif inputUser == 7:
         printProduct(arrayProduct)
+    elif inputUser == 8:
+        break
 
 Fin.close()
